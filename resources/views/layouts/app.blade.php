@@ -52,8 +52,8 @@
                 <li><a href="setting.html"><i class="fa fa-cog"></i>Settings</a></li>
                 <li><a href="about-us.html"><i class="fa fa-user"></i>About Us</a></li>
                 <li><a href="contact.html"><i class="fa fa-envelope-o"></i>Contact Us</a></li>
-                <li><a href="login.html"><i class="fa fa-sign-in"></i>Login</a></li>
-                <li><a href="register.html"><i class="fa fa-user-plus"></i>Register</a></li>
+                <li><a href="/user/login"><i class="fa fa-sign-in"></i>Login</a></li>
+                <li><a href="/user/reg"><i class="fa fa-user-plus"></i>Register</a></li>
             </ul>
         </div>
         <!-- end side nav right-->
@@ -62,7 +62,7 @@
         <div class="navbar-bottom">
             <div class="row">
                 <div class="col s2">
-                    <a href="index.html"><i class="fa fa-home"></i></a>
+                    <a href="/"><i class="fa fa-home"></i></a>
                 </div>
                 <div class="col s2">
                     <a href="wishlist.html"><i class="fa fa-heart"></i></a>
@@ -97,8 +97,8 @@
         <div class="footer">
             <div class="container">
                 <div class="about-us-foot">
-                    <h6>Mstore</h6>
-                    <p>is a lorem ipsum dolor sit amet, consectetur adipisicing elit consectetur adipisicing elit.</p>
+                    <h6>我靠这什么框架</h6>
+                    <p>私はこのフレームワークに頼っているので使いにくい</p>
                 </div>
                 <div class="social-media">
                     <a href=""><i class="fa fa-facebook"></i></a>
@@ -108,7 +108,7 @@
                     <a href=""><i class="fa fa-instagram"></i></a>
                 </div>
                 <div class="copyright">
-                    <span>© 2017 All Right Reserved</span>
+                    <span>© 2019 lening 1809a 的项目</span>
                 </div>
             </div>
         </div>
