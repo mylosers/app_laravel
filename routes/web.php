@@ -11,5 +11,6 @@
 |
 */
 
-Route::get('/', 'Home\HomeController@home');
-Route::get('/goodsList', 'Goods\GoodsController@goodsList');
+Route::get('/', 'Home\HomeController@home');//首页
+Route::get('/goodsList', 'Goods\GoodsController@goodsList');//商品列表
+Route::get('/goodsDetails', 'Goods\GoodsController@goodsDetails');//商品详情

@@ -7,30 +7,6 @@
 @endsection
 
 @section('body')
-	<!-- navbar bottom -->
-	<div class="navbar-bottom">
-		<div class="row">
-			<div class="col s2">
-				<a href="index.html"><i class="fa fa-home"></i></a>
-			</div>
-			<div class="col s2">
-				<a href="wishlist.html"><i class="fa fa-heart"></i></a>
-			</div>
-			<div class="col s4">
-				<div class="bar-center">
-					<a href="#animatedModal" id="cart-menu"><i class="fa fa-shopping-basket"></i></a>
-					<span>2</span>
-				</div>
-			</div>
-			<div class="col s2">
-				<a href="contact.html"><i class="fa fa-envelope-o"></i></a>
-			</div>
-			<div class="col s2">
-				<a href="#animatedModal2" id="nav-menu"><i class="fa fa-bars"></i></a>
-			</div>
-		</div>
-	</div>
-	<!-- end navbar bottom -->
 
 	<!-- menu -->
 	<div class="menus" id="animatedModal2">
@@ -337,12 +313,12 @@
 					@for($k=1;$k<=2;$k++)
 						<div class="col s6">
 							<div class="content">
-								<img src="{{$v['goods_img']}}" alt="">
-								<h6><a href="">{{$v['goods_name']}}</a></h6>
+								<img src="{{$v['goods_img']}}">
+								<h6><a href='/goodsDetails'>{{$v['goods_name']}}</a></h6>
 								<div class="price">
 									￥{{$v['goods_price']}}
 								</div>
-								<button class="btn button-default">查看窗口</button>
+								<a href="/goodsDetails?goods_id={{$v['goods_id']}}"><button class="btn button-default">查看商品</button></a>
 							</div>
 						</div>
 					@endfor
