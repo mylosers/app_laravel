@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::any("cart","Cart\CartController@cart");//加入购物车
+Route::any("cartlist","Cart\CartController@cartlist");//购物车列表展示
+
+
