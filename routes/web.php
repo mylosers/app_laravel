@@ -11,6 +11,16 @@
 |
 */
 
+<<<<<<< HEAD
 Route::get('/', 'Home\HomeController@home');//首页
 Route::get('/goodsList', 'Goods\GoodsController@goodsList');//商品列表
 Route::get('/goodsDetails', 'Goods\GoodsController@goodsDetails');//商品详情
+=======
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::any("cart","Cart\CartController@cart");//加入购物车
+Route::any("cartlist","Cart\CartController@cartlist");//购物车列表展示
+
+
+>>>>>>> gaogao
