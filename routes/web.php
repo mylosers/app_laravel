@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Home\HomeController@home');
+Route::get('/goodsList', 'Goods\GoodsController@goodsList');
