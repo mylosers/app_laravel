@@ -83,6 +83,252 @@
         </div>
         <!-- end navbar bottom -->
 
+        <!-- menu -->
+        <div class="menus" id="animatedModal2">
+            <div class="close-animatedModal2 close-icon">
+                <i class="fa fa-close"></i>
+            </div>
+            <div class="modal-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s4">
+                            <a href="/" class="button-link">
+                                <div class="menu-link">
+                                    <div class="icon">
+                                        <i class="fa fa-home"></i>
+                                    </div>
+                                    首页
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col s4">
+                            <a href="/goodsList" class="button-link">
+                                <div class="menu-link">
+                                    <div class="icon">
+                                        <i class="fa fa-bars"></i>
+                                    </div>
+                                    商品列表
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col s4">
+                            <a href="shop-single.html" class="button-link">
+                                <div class="menu-link">
+                                    <div class="icon">
+                                        <i class="fa fa-eye"></i>
+                                    </div>
+                                    Single Shop
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s4">
+                            <a href="wishlist.html" class="button-link">
+                                <div class="menu-link">
+                                    <div class="icon">
+                                        <i class="fa fa-heart"></i>
+                                    </div>
+                                    Wishlist
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col s4">
+                            <a href="/cartlist" class="button-link">
+                                <div class="menu-link">
+                                    <div class="icon">
+                                        <i class="fa fa-shopping-cart"></i>
+                                    </div>
+                                    购物车
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col s4">
+                            <a href="checkout.html" class="button-link">
+                                <div class="menu-link">
+                                    <div class="icon">
+                                        <i class="fa fa-credit-card"></i>
+                                    </div>
+                                    Checkout
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s4">
+                            <a href="blog.html" class="button-link">
+                                <div class="menu-link">
+                                    <div class="icon">
+                                        <i class="fa fa-bold"></i>
+                                    </div>
+                                    Blog
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col s4">
+                            <a href="blog-single.html" class="button-link">
+                                <div class="menu-link">
+                                    <div class="icon">
+                                        <i class="fa fa-file-text-o"></i>
+                                    </div>
+                                    Blog Single
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col s4">
+                            <a href="error404.html" class="button-link">
+                                <div class="menu-link">
+                                    <div class="icon">
+                                        <i class="fa fa-hourglass-half"></i>
+                                    </div>
+                                    404
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s4">
+                            <a href="testimonial.html" class="button-link">
+                                <div class="menu-link">
+                                    <div class="icon">
+                                        <i class="fa fa-support"></i>
+                                    </div>
+                                    Testimonial
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col s4">
+                            <a href="about-us.html" class="button-link">
+                                <div class="menu-link">
+                                    <div class="icon">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    About Us
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col s4">
+                            <a href="contact.html" class="button-link">
+                                <div class="menu-link">
+                                    <div class="icon">
+                                        <i class="fa fa-envelope-o"></i>
+                                    </div>
+                                    Contact
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s4">
+                            <a href="setting.html" class="button-link">
+                                <div class="menu-link">
+                                    <div class="icon">
+                                        <i class="fa fa-cog"></i>
+                                    </div>
+                                    Settings
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col s4">
+                            <a href="login.html" class="button-link">
+                                <div class="menu-link">
+                                    <div class="icon">
+                                        <i class="fa fa-sign-in"></i>
+                                    </div>
+                                    Login
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col s4">
+                            <a href="/user/reg" class="button-link">
+                                <div class="menu-link">
+                                    <div class="icon">
+                                        <i class="fa fa-user-plus"></i>
+                                    </div>
+                                    Register
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end menu -->
+
+        <!-- cart menu -->
+        <div class="menus" id="animatedModal">
+            <div class="close-animatedModal close-icon">
+                <i class="fa fa-close"></i>
+            </div>
+            <div class="modal-content">
+                <div class="cart-menu">
+                    <div class="container">
+                        <div class="content">
+                            @foreach($cart as $k=>$v)
+                                <div class="cart-1">
+                                    <div class="row">
+                                        <div class="col s5">
+                                            <img src="{{$v['goods_img']}}">
+                                        </div>
+                                        <div class="col s7">
+                                            <h5><a href="/goodsDetails?goods_id={{$v['goods_id']}}">{{$v['goods_name']}}</a></h5>
+                                        </div>
+                                    </div>
+                                    <div class="row quantity">
+                                        <div class="col s5">
+                                            <h5>Quantity</h5>
+                                        </div>
+                                        <div class="col s7">
+                                            <input value="{{$v['buy_number']}}" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s5">
+                                            <h5>Price</h5>
+                                        </div>
+                                        <div class="col s7">
+                                            <h5>${{$v['goods_price']*$v['buy_number']}}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s5">
+                                            <h5>Action</h5>
+                                        </div>
+                                        <div class="col s7">
+                                            <div class="action"><i class="fa fa-trash"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divider"></div>
+                            @endforeach
+                        </div>
+                        <div class="total">
+                            @foreach($cart as $k=>$v)
+                                <div class="row">
+                                    <div class="col s7">
+                                        <h5>{{$v['goods_name']}}</h5>
+                                    </div>
+                                    <div class="col s5">
+                                        <h5>${{$v['goods_price']}}</h5>
+                                    </div>
+                                </div>
+                            @endforeach
+                            <div class="row">
+                                <div class="col s7">
+                                    <h6>Total</h6>
+                                </div>
+                                <div class="col s5">
+                                    <h6>${{$total}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn button-default">Process to Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end cart menu -->
+
 @show
 
 @section('body')
@@ -91,7 +337,9 @@
 
 @section('bottom')
 
-
+        <!-- loader -->
+        <div id="fakeLoader"></div>
+        <!-- end loader -->
 
         <!-- footer -->
         <div class="footer">
