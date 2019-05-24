@@ -17,18 +17,46 @@ class RegisterController extends Controller
     //数据入库
     public function regAdd(Request $request)
     {
-//        $a=DB::table('user')->get();
-//        $a=UserModel::where(['user_id'=>1])->first();
-//        dd($a);
+        //接值
         $user_name=$request->input('user_name');
+        $user_pwd=$request->input('user_pwd');
+        $user_email=$request->input('user_email');
+        //验证用户
+        if (empty($user_name)){
+            $arr=array(
+                'status'=>1,
+                'code'=>'The user cannot be empty'
+            );
+
+            return json_encode($arr);
+        }
+        //验证邮箱
+        if(empty($user_email)){
+            $arr=array(
+                'status'=>1,
+                'code'=>'The email cannot be empty'
+            );
+
+            return json_encode($arr);
+        }
+        //验证密码
+        if (empty($user_pwd)){
+            $arr=array(
+                'status'=>1,
+                'code'=>'The password cannot be empty'
+            );
+
+            return json_encode($arr);
+        }
         $res=DB::table('user')->where('user_name',$user_name)->first();
         if (empty($res)){
             $data=[
                 'user_name'=>$user_name,
-                'user_email'=>$request->input('user_email'),
-                'user_pwd'=>md5($request->input('user_pwd')),
+                'user_email'=>$user_email,
+                'user_pwd'=>md5($user_pwd),
                 'add_time'=>time(),
-                'last_time'=>time()
+                'last_time'=>time(),
+                'login_status'=>0
             ];
             $user_id=UserModel::insertGetId($data);
             if($user_id){
