@@ -271,7 +271,7 @@
                         <h5>Image</h5>
                     </div>
                     <div class="col s7">
-                        <img src="{{$v->goods_img}}" alt="">
+                        <img src="http://vm.app.api.com/{{$v->goods_img}}" alt="">
                     </div>
                 </div>
                 <div class="row">
