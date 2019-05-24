@@ -2,17 +2,16 @@
 namespace App\Http\Controllers\Cart;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Redis;
+
 class CartController  extends Controller
 {
     //加入购物车
     public function cart(Request $request)
     {
-        $user_id = 1;
+        $user_id =  $request->input("uid");
         $goods_id = $request->input("goods_id");
+        $img = $request->input("img");
 
         if (!empty($user_id)) {
             $where = [
@@ -25,8 +24,8 @@ class CartController  extends Controller
                 $upd = DB::table("carts")->where($where)->update(['buy_number' => $a]);
                 if ($upd) {
                     $arr = [
-                        'code' => 3,
-                        'msg' => "加入购物车成功呀",
+                        'code' => 0,
+                        'msg' => "加入购物车成功",
                     ];
                     return $arr;
                 }
@@ -40,6 +39,7 @@ class CartController  extends Controller
                     "user_id" => $user_id,
                     "goods_id" => $goods_id,
                     "buy_number" => 1,
+                    "goods_img" => $img,
                     "goods_name" => $res->goods_name,
                     "goods_price" => $res->goods_price,
                     "add_time" => time(),
@@ -48,13 +48,13 @@ class CartController  extends Controller
                 $arr = DB::table("carts")->insert($data);
                 if ($arr) {
                     $response = [
-                        "code" => 1,
+                        "code" => 0,
                         "msg" => "加入购物车成功",
                     ];
                     return $response;
                 } else {
                     $response = [
-                        "code" => 0,
+                        "code" => 1,
                         "msg" => "加入购物车失败",
                     ];
                     return $response;
@@ -62,7 +62,7 @@ class CartController  extends Controller
             }
         } else {
             $response = [
-                "code" => 2,
+                "code" => 50001,
                 "msg" => "未登录",
             ];
             return $response;
@@ -70,19 +70,9 @@ class CartController  extends Controller
     }
     //展示购物车列表
     public function cartlist(Request $request){
-        $user_id = 1;
-        if ($user_id) {
-            $res = DB::table("carts")->where(["status"=>1])->get();
-            return view("Cart.cartlist",['res'=>$res]);
-
-        }else{
-            $response=[
-              'error'=>0,
-                'msg'=>'请先登录'
-            ];
-            die(json_encode($response,JSON_UNESCAPED_UNICODE));
-        }
-
+        $uid=$request->input('uid');
+        $res = DB::table("carts")->where(["status"=>0,'user_id'=>$uid])->get();
+        return view("Cart.cartlist",['res'=>$res]);
     }
 
 
