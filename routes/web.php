@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+//用户user
+Route::get('/user/reg','User\RegisterController@reg');
+Route::post('/user/regAdd','User\RegisterController@regAdd');
+Route::get('/user/login','User\LoginController@login');
+Route::post('/user/logdo','User\LoginController@logindo');
+
