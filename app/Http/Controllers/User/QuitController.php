@@ -16,12 +16,20 @@ class QuitController extends Controller
     public function quit(Request $request)
     {
         $uid=$request->input('uid');
-        DB::table('user')->where('user_id',$uid)->update(['login_status'=>0]);
+        $res=DB::table('user')->where('user_id',$uid)->update(['login_status'=>0]);
+        if ($res){
+            $arr=[
+                'status'=>200,
+                'code'=>'Exit the success'
+            ];
+            return json_encode($arr);
+        }else{
+            $arr=[
+                'status'=>2001,
+                'code'=>'Opt out failed. Try later.'
+            ];
+            return json_encode($arr);
+        }
 
-        $arr=[
-            'status'=>200,
-            'code'=>'Exit the success'
-        ];
-        return json_encode($arr);
     }
 }

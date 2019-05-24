@@ -25,7 +25,7 @@
         <link rel="stylesheet" href="/css/animate.css">
         <link rel="stylesheet" href="/css/style.css">
 
-        <link rel="shortcut icon" href="img/favicon.png">
+        <link rel="shortcut icon" href="/img/favicon.png">
 
     </head>
     <body>
@@ -37,7 +37,7 @@
     </div>
     <!-- end site brand	 -->
     <div class="side-nav-panel-right">
-        <a href="#" data-activates="slide-out-right" class="side-nav-left"><i class="fa fa-user"></i></a>
+        <a href="#" id="center" data-activates="slide-out-right" class="side-nav-left"><i class="fa fa-user"></i></a>
     </div>
 </div>
         <!-- end navbar top -->
@@ -46,7 +46,7 @@
         <div class="side-nav-panel-right">
             <ul id="slide-out-right" class="side-nav side-nav-panel collapsible">
                 <li class="profil">
-                    <img src="img/profile.jpg" alt="">
+                    <img src="/img/profile.jpg" alt="">
                     <h2>John Doe</h2>
                 </li>
                 <li><a href="setting.html"><i class="fa fa-cog"></i>Settings</a></li>
@@ -371,10 +371,26 @@
         $(function(){
             var storage=window.localStorage;
             var uid=storage["uid"];
-            if(!uid){
-                alert('请先登录');
-                window.location.replace("/user/login");
-            }
+            $('#center').click(function (){
+                $.ajax({
+                    url:'/user/center',
+                    data:{uid:uid},
+                    type:"post",
+                    dataType:'json',
+                    success:function (res){
+                        if(res.error==50002){
+                            alert(res.msg);
+                            location.herf="/user/login";
+                        }
+                    }
+
+                })
+            })
+//            if(!uid){
+//                alert('请先登录');
+//                window.location.replace("/user/login");
+//            }
+
             $.ajax({
                 url:'/homeCart',
                 type:"post",

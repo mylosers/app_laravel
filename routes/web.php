@@ -26,4 +26,9 @@ Route::get('/user/reg','User\RegisterController@reg');//注册
 Route::post('/user/regAdd','User\RegisterController@regAdd');
 Route::get('/user/login','User\LoginController@login');//登录
 Route::post('/user/logdo','User\LoginController@logindo');
-Route::get('/user/quit','User\QuitController@Quit');//退出
+Route::post('/user/quit','User\QuitController@Quit');//退出
+
+Route::group(['middleware' => ['checklogin']], function () {
+    Route::post('/user/center','User\UserController@center');//个人中心
+
+});
