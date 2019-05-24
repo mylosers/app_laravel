@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use App\Model\GoodsModel;
+use App\Model\CartModel;
 
 /**
  * 首页
@@ -31,7 +32,35 @@ class HomeController extends Controller
             $hos=[];
         }
         //购物车
+        $cart=CartModel::where(['user_id'=>1])->get();
+        if($cart){
+            $cart=$cart->toArray();
+        }else{
+            $cart=[];
+        }
+        $Total=$this->multi_array_sum($cart,'goods_price','buy_number');
+        return view('Home.home',['data'=>$goods,'hos'=>$hos,'cart'=>$cart,'total'=>$Total]);
+    }
 
-        return view('Home.home',['data'=>$goods,'hos'=>$hos]);
+    /**
+     * 计算二维数组价格的合
+     * $arr 二维数组
+     * $key 需要对价格进行求和运算
+     * $keys 需要想乘的数量
+     */
+    function multi_array_sum($arr,  $key,$keys)
+    {
+        if ($arr)
+        {
+            $sum_no = 0;
+
+            foreach($arr as $v)
+            {
+                $sum_no +=  $v[$key]*$v[$keys];
+            }
+            return $sum_no;
+        } else {
+            return 0;
+        }
     }
 }

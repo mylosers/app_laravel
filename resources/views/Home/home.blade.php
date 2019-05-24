@@ -192,10 +192,10 @@
 						<div class="cart-1">
 							<div class="row">
 								<div class="col s5">
-									<img src="img/cart-menu1.png" alt="">
+									<img src="{{$v['goods_img']}}">
 								</div>
 								<div class="col s7">
-									<h5><a href="">Fashion Men's</a></h5>
+									<h5><a href="/goodsDetails?goods_id={{$v['goods_id']}}">{{$v['goods_name']}}</a></h5>
 								</div>
 							</div>
 							<div class="row quantity">
@@ -203,7 +203,7 @@
 									<h5>Quantity</h5>
 								</div>
 								<div class="col s7">
-									<input value="1" type="text">
+									<input value="{{$v['buy_number']}}" type="text">
 								</div>
 							</div>
 							<div class="row">
@@ -211,7 +211,7 @@
 									<h5>Price</h5>
 								</div>
 								<div class="col s7">
-									<h5>$20</h5>
+									<h5>${{$v['goods_price']*$v['buy_number']}}</h5>
 								</div>
 							</div>
 							<div class="row">
@@ -227,28 +227,22 @@
 						@endforeach
 					</div>
 					<div class="total">
+						@foreach($cart as $k=>$v)
 						<div class="row">
 							<div class="col s7">
-								<h5>Fashion Men's</h5>
+								<h5>{{$v['goods_name']}}</h5>
 							</div>
 							<div class="col s5">
-								<h5>$21.00</h5>
+								<h5>${{$v['goods_price']}}</h5>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col s7">
-								<h5>Fashion Men's</h5>
-							</div>
-							<div class="col s5">
-								<h5>$21.00</h5>
-							</div>
-						</div>
+						@endforeach
 						<div class="row">
 							<div class="col s7">
 								<h6>Total</h6>
 							</div>
 							<div class="col s5">
-								<h6>$41.00</h6>
+								<h6>${{$total}}</h6>
 							</div>
 						</div>
 					</div>
