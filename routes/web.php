@@ -20,3 +20,8 @@ Route::get('/goodsDetails', 'Goods\GoodsController@goodsDetails');//商品详情
 
 Route::any("cart","Cart\CartController@cart");//加入购物车
 Route::any("cartlist","Cart\CartController@cartlist");//购物车列表展示
+//用户user
+Route::get('/user/reg','User\RegisterController@reg');
+Route::post('/user/regAdd','User\RegisterController@regAdd');
+Route::get('/user/login','User\LoginController@login');
+Route::post('/user/logdo','User\LoginController@logindo');
