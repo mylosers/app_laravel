@@ -21,7 +21,7 @@ class RegisterController extends Controller
 //        $a=UserModel::where(['user_id'=>1])->first();
 //        dd($a);
         $user_name=$request->input('user_name');
-        $res=DB::table('user')->select('user_name')->first();
+        $res=DB::table('user')->where('user_name',$user_name)->first();
         if (empty($res)){
             $data=[
                 'user_name'=>$user_name,
