@@ -70,7 +70,7 @@
                 <div class="col s4">
                     <div class="bar-center">
                         <a href="#animatedModal" id="cart-menu"><i class="fa fa-shopping-basket"></i></a>
-                        <span>2</span>
+                        <span id="num"></span>
                     </div>
                 </div>
                 <div class="col s2">
@@ -263,15 +263,14 @@
             <div class="modal-content">
                 <div class="cart-menu">
                     <div class="container">
-                        <div class="content">
-                            @foreach($cart as $k=>$v)
+                        <div class="content" id="goods">
                                 <div class="cart-1">
                                     <div class="row">
                                         <div class="col s5">
-                                            <img src="{{$v['goods_img']}}">
+                                            <img src="">
                                         </div>
                                         <div class="col s7">
-                                            <h5><a href="/goodsDetails?goods_id={{$v['goods_id']}}">{{$v['goods_name']}}</a></h5>
+                                            <h5><a href=""></a></h5>
                                         </div>
                                     </div>
                                     <div class="row quantity">
@@ -279,7 +278,7 @@
                                             <h5>Quantity</h5>
                                         </div>
                                         <div class="col s7">
-                                            <input value="{{$v['buy_number']}}" type="text">
+                                            <input value="" type="text">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -287,7 +286,7 @@
                                             <h5>Price</h5>
                                         </div>
                                         <div class="col s7">
-                                            <h5>${{$v['goods_price']*$v['buy_number']}}</h5>
+                                            <h5></h5>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -300,25 +299,24 @@
                                     </div>
                                 </div>
                                 <div class="divider"></div>
-                            @endforeach
                         </div>
                         <div class="total">
-                            @foreach($cart as $k=>$v)
-                                <div class="row">
+                            <div id="cart2">
+                                <div class="row" >
                                     <div class="col s7">
-                                        <h5>{{$v['goods_name']}}</h5>
+                                        <h5></h5>
                                     </div>
                                     <div class="col s5">
-                                        <h5>${{$v['goods_price']}}</h5>
+                                        <h5></h5>
                                     </div>
                                 </div>
-                            @endforeach
+                            </div>
                             <div class="row">
                                 <div class="col s7">
                                     <h6>Total</h6>
                                 </div>
                                 <div class="col s5">
-                                    <h6>${{$total}}</h6>
+                                    <h6 id="total">1</h6>
                                 </div>
                             </div>
                         </div>
@@ -369,6 +367,78 @@
 <script src="/js/animatedModal.min.js"></script>
 <script src="/js/main.js"></script>
 
+    <script>
+        $(function(){
+            var storage=window.localStorage;
+            var uid=storage["uid"];
+            if(!uid){
+                alert('请先登录');
+                window.location.replace("/user/login");
+            }
+            $.ajax({
+                url:'/homeCart',
+                type:"post",
+                data:{uid:uid},
+                dataType:'json',
+                success:function(msg){
+                    if(msg.error==0){
+                        $("#total").html("$"+msg.total);
+                        var str="";
+                        var goods="";
+                        $.each(msg.cart,function(i,v) {
+                            str += '<div class="row">'
+                                    + ' <div class="col s7">'
+                                    + ' <h5>'+ v.goods_name+'</h5>'
+                                    + ' </div>'
+                                    + ' <div class="col s5">'
+                                    + ' <h5>$'+ v.goods_price+'</h5>'
+                                    + ' </div>'
+                                    + ' </div>';
+
+                            goods+='+<div class="cart-1">'
+                                    +'<div class="row">'
+                                    +'<div class="col s5">'
+                                    +'<img src='+ v.goods_img+'>'
+                                    +'</div>'
+                                    +'<div class="col s7">'
+                                    +'<h5><a href="/goodsDetails?goods_id='+v.goods_id+'>'+ v.goods_name+'</a></h5>'
+                                    +'</div>'
+                                    +'</div>'
+                                    +'<div class="row quantity">'
+                                    +'<div class="col s5">'
+                                    +'<h5>Quantity</h5>'
+                                    +'</div>'
+                                    +'<div class="col s7">'
+                                    +'<input value='+ v.buy_number+' type="text">'
+                                    +'</div>'
+                                    +'</div>'
+                                    +'<div class="row">'
+                                    +'<div class="col s5">'
+                                    +'<h5>Price</h5>'
+                                    +'</div>'
+                                    +'<div class="col s7">'
+                                    +'<h5>$'+ v.goods_price* v.buy_number+'</h5>'
+                                    +'</div>'
+                                    +'</div>'
+                                    +'<div class="row">'
+                                    +'<div class="col s5">'
+                                    +'<h5>Action</h5>'
+                                    +'</div>'
+                                    +'<div class="col s7">'
+                                    +'<div class="action"><i class="fa fa-trash"></i></div>'
+                                    +'</div>'
+                                    +'</div>'
+                                    +'</div>'
+                                    +'<div class="divider"></div>';
+                        });
+                        $("#cart2").html(str);
+                        $("#goods").html(goods);
+                        $("#num").html(msg.num);
+                    }
+                }
+            });
+        })
+    </script>
 </body>
 </html>
 @show

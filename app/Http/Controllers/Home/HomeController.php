@@ -17,7 +17,7 @@ class HomeController extends Controller
      * 首页视图
      */
     public function home(){
-        //查询商品表
+        //查询商品表新品
         $goods=GoodsModel::where(['is_new'=>1,'is_up'=>1])->get();
         if($goods){
             $goods=$goods->toArray();
@@ -31,15 +31,30 @@ class HomeController extends Controller
         }else{
             $hos=[];
         }
+        return view('Home.home',['data'=>$goods,'hos'=>$hos]);
+    }
+
+    /**
+     * 获取布局中的购物车数据
+     */
+    public function homeCart(){
+        $uid=$_POST['uid'];
         //购物车
-        $cart=CartModel::where(['user_id'=>1])->get();
+        $cart=CartModel::where(['user_id'=>$uid])->get();
         if($cart){
             $cart=$cart->toArray();
         }else{
             $cart=[];
         }
         $Total=$this->multi_array_sum($cart,'goods_price','buy_number');
-        return view('Home.home',['data'=>$goods,'hos'=>$hos,'cart'=>$cart,'total'=>$Total]);
+        $num=count($cart);
+        $res=[
+            'error'=>0,
+            'cart'=>$cart,
+            'total'=>$Total,
+            'num'=>$num
+        ];
+        return $res;
     }
 
     /**
