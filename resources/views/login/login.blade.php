@@ -436,6 +436,8 @@
                 dataType:'json',
                 success:function (res){
                     if (res.status==0){
+                        var storage=window.localStorage;
+                        storage["uid"]=res.uid;
                         alert(res.code);
                         location.href="/";
                     }else
