@@ -14,15 +14,14 @@ class UserController extends Controller
     public function center(Request $request)
     {
         $uid=$request->input('uid');
-        $info=DB::table('user')->select('user_name','user_email')->first();
+        $info=DB::table('user')->where('user_id',$uid)->select('user_name')->first();
         $user_name=$info->user_name;
-        $user_email=$info->user_email;
 
-        $data=[
-            'user_name'=>$user_name,
-            'user_email'=>$user_email
+        $res=[
+            'status'=>'200',
+            'user_name'=>$user_name
         ];
 
-        return $data;
+        return json_encode($res);
     }
 }

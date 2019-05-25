@@ -47,12 +47,12 @@
             <ul id="slide-out-right" class="side-nav side-nav-panel collapsible">
                 <li class="profil">
                     <img src="/img/profile.jpg" alt="">
-                    <h2>John Doe</h2>
+                    <h2 id="user_name">John Doe</h2>
                 </li>
-                <li><a href="setting.html"><i class="fa fa-cog"></i>Settings</a></li>
-                <li><a href="about-us.html"><i class="fa fa-user"></i>About Us</a></li>
-                <li><a href="contact.html"><i class="fa fa-envelope-o"></i>Contact Us</a></li>
-                <li><a href="/user/login"><i class="fa fa-sign-in"></i>Login</a></li>
+                <li><a class="aaa" href="setting.html"><i class="fa fa-cog"></i>Settings</a></li>
+                <li><a class="aaa" href="about-us.html"><i class="fa fa-user"></i>About Us</a></li>
+                <li><a class="aaa" href="contact.html"><i class="fa fa-envelope-o"></i>Contact Us</a></li>
+                <li id="replace"><a href="/user/login"><i class="fa fa-sign-in"></i>Login</a></li>
                 <li><a href="/user/reg"><i class="fa fa-user-plus"></i>Register</a></li>
             </ul>
         </div>
@@ -378,18 +378,46 @@
                     type:"post",
                     dataType:'json',
                     success:function (res){
-                        if(res.error==50002){
-                            alert(res.msg);
-                            location.herf="/user/login";
+                        if(res.error==50003){
+                            //未登录只显示login和register
+                            $('.aaa').remove();
+
+                        }else if(res.status==200){
+                            var _a="";
+                                _a +='<h2 id="user_name">'+res.user_name+'</h2>'
+                            $('#user_name').html(_a);
+                            var _li="";
+                                _li +='<li id="quite">'
+                                        +'<a id="replace">'
+                                        +'<i class="fa fa-sign-in">'+'</i>'+'Quite'+'</a>'
+                                    +'</li>'
+                            $('#replace').html(_li);
                         }
                     }
 
                 })
+            });
+            //退出
+                $(document).on('click','#quite',function(){
+                var storage=window.localStorage;
+                var uid=storage["uid"];
+
+                $.ajax({
+                    url:'/user/quite',
+                    data:{uid:uid},
+                    type:"post",
+                    dataType:'json',
+                    success:function (res){
+                        if (res.status==200){
+                            alert(res.msg);
+                            storage.removeItem('uid');
+                            window.location.replace("/");
+                        }else{
+                            alert(res.msg);
+                        }
+                    }
+                })
             })
-//            if(!uid){
-//                alert('请先登录');
-//                window.location.replace("/user/login");
-//            }
 
             $.ajax({
                 url:'/homeCart',
