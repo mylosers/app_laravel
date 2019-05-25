@@ -28,4 +28,5 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::any("cart","Cart\CartController@cart");//加入购物车
     Route::any("cartlist","Cart\CartController@cartlist");//购物车列表展示
     Route::post('/order','Order\OrderController@order');//个人中心
+    Route::get('/orderList','Order\OrderController@orderList');//个人中心
 });

@@ -103,7 +103,7 @@
                 success:function(msg){
                     alert(msg.msg);
                     if(msg.error==0){
-//                        window.location.replace("/cartlist?uid="+uid);
+                        window.location.replace("/orderList?uid="+uid);
                     }
                 }
             });
