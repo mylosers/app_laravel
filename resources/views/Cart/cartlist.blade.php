@@ -58,6 +58,10 @@
                 </div>
             </div>
             <div class="divider"></div>
+                <button class="btn button-default">提交订单</button>
+                <input type="hidden" value="{{$v->cart_id}}">
+                <input type="hidden" value="{{$v->goods_price*$v->buy_number}}">
+                <div class="divider"></div>
             @endforeach
         </div>
         <div class="total">
@@ -76,25 +80,35 @@
                     <h6>Total</h6>
                 </div>
                 <div class="col s5">
-                    <h6>$41.00</h6>
+                    <h6>${{$total}}</h6>
                 </div>
             </div>
         </div>
-        <button class="btn button-default">Process to Checkout</button>
     </div>
 </div>
         <!-- end cart -->
-<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
 <script>
     $(function(){
-        var storage=window.localStorage;
-        var uid=storage["uid"];
-        if(!uid){
-            alert('请先登录');
-            window.location.replace("/user/login");
-            return false;
-        }
-    })
+        $('.btn').click(function(){
+            var cart_id=$(this).next().val();
+            var order_amout=$(this).next().next().val();
+            var storage=window.localStorage;
+            var uid=storage["uid"];
+            $.ajax({
+                url:'/order',
+                type:"post",
+                data:{cart_id:cart_id,uid:uid,order_amout:order_amout},
+                dataType:'json',
+                success:function(msg){
+                    alert(msg.msg);
+                    if(msg.error==0){
+//                        window.location.replace("/cartlist?uid="+uid);
+                    }
+                }
+            });
+        })
+    });
 </script>
 
 @endsection

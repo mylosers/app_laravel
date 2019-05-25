@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Cart;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Model\CartModel;
 class CartController  extends Controller
 {
     //加入购物车
@@ -71,8 +71,32 @@ class CartController  extends Controller
     //展示购物车列表
     public function cartlist(Request $request){
         $uid=$request->input('uid');
-        $res = DB::table("carts")->where(["status"=>0,'user_id'=>$uid])->get();
-        return view("Cart.cartlist",['res'=>$res]);
+        $res=CartModel::where(["status"=>0,'user_id'=>$uid])->get();
+        $arr=$res->toArray();
+        $total=$this->multi_array_sum($arr,'goods_price','buy_number');
+        return view("Cart.cartlist",['res'=>$res,'total'=>$total]);
+    }
+
+    /**
+     * 计算二维数组价格的合
+     * $arr 二维数组
+     * $key 需要对价格进行求和运算
+     * $keys 需要想乘的数量
+     */
+    function multi_array_sum($arr,  $key,$keys)
+    {
+        if ($arr)
+        {
+            $sum_no = 0;
+
+            foreach($arr as $v)
+            {
+                $sum_no +=  $v[$key]*$v[$keys];
+            }
+            return $sum_no;
+        } else {
+            return 0;
+        }
     }
 
 
