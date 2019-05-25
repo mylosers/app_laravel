@@ -20,7 +20,7 @@ Route::get('/user/reg','User\RegisterController@reg');//注册
 Route::post('/user/regAdd','User\RegisterController@regAdd');
 Route::get('/user/login','User\LoginController@login');//登录
 Route::post('/user/logdo','User\LoginController@logindo');
-Route::post('/user/quit','User\QuitController@Quit');//退出
+Route::post('/user/quite','User\QuitController@quit');//退出
 
 Route::group(['middleware' => ['checklogin']], function () {
     Route::post('/homeCart', 'Home\HomeController@homeCart');//获取布局中的购物车数据

@@ -20,7 +20,7 @@ class CheckLogin
         //是否有uid
         if (empty($uid)){
             $arr=[
-                'error'=>50002,
+                'error'=>50003,
                 'msg'=>'请先登录'
             ];
             echo json_encode($arr);exit;
