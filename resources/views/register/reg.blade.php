@@ -18,7 +18,7 @@
             <div class="row">
                 <form class="col s12">
                     <div class="input-field">
-                        <input type="text" class="validate" id="name" placeholder="NAME" required>
+                        <input type="text" class="validate" id="user_name" placeholder="NAME" required>
                     </div>
                     <div class="input-field">
                         <input type="email" placeholder="EMAIL" id="user_email" class="validate" required>
@@ -39,7 +39,7 @@
 <script>
     $(function (){
         $('#btn').click(function (){
-            var user_name=$('#name').val();
+            var user_name=$('#user_name').val();
             var user_email=$('#user_email').val();
             var user_pwd=$('#user_pwd').val();
             $.ajax({

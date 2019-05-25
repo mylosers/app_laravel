@@ -38,8 +38,6 @@
         $('#btn').click(function (){
             var user_name=$('#user_name').val();
             var user_pwd=$('#user_pwd').val();
-
-//            console.log(user_pwd);
             $.ajax({
                 url:'/user/logdo',
                 data:{user_name:user_name,user_pwd:user_pwd},

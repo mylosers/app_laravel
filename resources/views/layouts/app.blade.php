@@ -47,7 +47,7 @@
             <ul id="slide-out-right" class="side-nav side-nav-panel collapsible">
                 <li class="profil">
                     <img src="/img/profile.jpg" alt="">
-                    <h2 id="user_name">John Doe</h2>
+                    <h2 id="name">John Doe</h2>
                 </li>
                 <li><a class="aaa" href="setting.html"><i class="fa fa-cog"></i>Settings</a></li>
                 <li><a class="aaa" href="about-us.html"><i class="fa fa-user"></i>About Us</a></li>
@@ -264,41 +264,7 @@
                 <div class="cart-menu">
                     <div class="container">
                         <div class="content" id="goods">
-                                <div class="cart-1">
-                                    <div class="row">
-                                        <div class="col s5">
-                                            <img src="">
-                                        </div>
-                                        <div class="col s7">
-                                            <h5><a href=""></a></h5>
-                                        </div>
-                                    </div>
-                                    <div class="row quantity">
-                                        <div class="col s5">
-                                            <h5>Quantity</h5>
-                                        </div>
-                                        <div class="col s7">
-                                            <input value="" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col s5">
-                                            <h5>Price</h5>
-                                        </div>
-                                        <div class="col s7">
-                                            <h5></h5>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col s5">
-                                            <h5>Action</h5>
-                                        </div>
-                                        <div class="col s7">
-                                            <div class="action"><i class="fa fa-trash"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="divider"></div>
+
                         </div>
                         <div class="total">
                             <div id="cart2">
@@ -384,8 +350,8 @@
 
                         }else if(res.status==200){
                             var _a="";
-                                _a +='<h2 id="user_name">'+res.user_name+'</h2>'
-                            $('#user_name').html(_a);
+                                _a +='<h2 id="name">'+res.user_name+'</h2>'
+                            $('#name').html(_a);
                             var _li="";
                                 _li +='<li id="quite">'
                                         +'<a id="replace">'
