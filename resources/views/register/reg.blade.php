@@ -42,7 +42,6 @@
             var user_name=$('#user_name').val();
             var user_email=$('#user_email').val();
             var user_pwd=$('#user_pwd').val();
-
             $.ajax({
                 url:'/user/regAdd',
                 data:{user_name:user_name,user_email:user_email,user_pwd:user_pwd},
