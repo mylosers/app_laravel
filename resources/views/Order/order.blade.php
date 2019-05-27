@@ -108,7 +108,8 @@
 											</div>
 										</div>
 									</div>
-									<a href="" class="btn button-default button-fullwidth">支付宝支付</a>
+									<a href="javascript:void(0)" class="btn button-default button-fullwidth">支付宝支付</a>
+									<input type="hidden" value="{{$v['order_id']}}">
 								</div>
 							</div>
 							@endforeach
@@ -121,6 +122,43 @@
 		</div>
 		<!-- end checkout -->
 
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script>
+	$(function(){
+		$(".btn").click(function(){
+			var storage=window.localStorage;
+			var uid=storage["uid"];
+			var order_id=$(this).next().val();
+				var ua = navigator.userAgent.toLowerCase();
+				var mua = {
+					IOS: /ipod|iphone|ipad/.test(ua), //iOS
+					IPHONE: /iphone/.test(ua), //iPhone
+					IPAD: /ipad/.test(ua), //iPad
+					ANDROID: /android/.test(ua), //Android Device
+					WINDOWS: /windows/.test(ua), //Windows Device
+					TOUCH_DEVICE: ('ontouchstart' in window) || /touch/.test(ua), //Touch Device
+					MOBILE: /mobile/.test(ua), //Mobile Device (iPad)
+					ANDROID_TABLET: false, //Android Tablet
+					WINDOWS_TABLET: false, //Windows Tablet
+					TABLET: false, //Tablet (iPad, Android, Windows)
+					SMART_PHONE: false //Smart Phone (iPhone, Android)
+				};
+
+				mua.ANDROID_TABLET = mua.ANDROID && !mua.MOBILE;
+				mua.WINDOWS_TABLET = mua.WINDOWS && /tablet/.test(ua);
+				mua.TABLET = mua.IPAD || mua.ANDROID_TABLET || mua.WINDOWS_TABLET;
+				mua.SMART_PHONE = mua.MOBILE && !mua.TABLET;
+
+			if(mua.WINDOWS==true||mua.WINDOWS==true||mua.ANDROID_TABLET==true||mua.WINDOWS_TABLET==true){
+				//电脑端
+				window.location.replace("pay/"+order_id);
+			}else{
+				//手机端
+
+			}
+		})
+	})
+</script>
 @endsection
 
 

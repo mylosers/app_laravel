@@ -30,3 +30,6 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::post('/order','Order\OrderController@order');//生成订单
     Route::get('/orderList','Order\OrderController@orderList');//订单列表
 });
+Route::get('pay/{id}', 'Pay\AlipayController@pay');       //去支付
+Route::get('/notify', 'Pay\AlipayController@notify');       //支付宝同步通知
+Route::get('/aliReturn', 'Pay\AlipayController@aliReturn');       //支付宝同步通知
