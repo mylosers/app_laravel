@@ -21,6 +21,8 @@ Route::post('/user/regAdd','User\RegisterController@regAdd');
 Route::get('/user/login','User\LoginController@login');//登录
 Route::post('/user/logdo','User\LoginController@logindo');
 Route::post('/user/quite','User\QuitController@quit');//退出
+Route::get('/wechat/login','User\LoginController@wxlogin');//wx登录
+Route::get('/wechat/code','User\LoginController@code');//wx登录code
 
 //获取地址
 Route::post('/user/address/town','User\AddressController@town');//市
@@ -40,5 +42,5 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::post('/user/addressAdd','User\AddressController@addressAdd');//检查登录状态
 });
 Route::get('pay/{id}', 'Pay\AlipayController@pay');       //去支付
-Route::get('/notify', 'Pay\AlipayController@notify');       //支付宝同步通知
+Route::post('/notify', 'Pay\AlipayController@notify');       //支付宝异步通知
 Route::get('/aliReturn', 'Pay\AlipayController@aliReturn');       //支付宝同步通知
