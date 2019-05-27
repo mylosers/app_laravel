@@ -16,7 +16,8 @@ class CheckLogin
      */
     public function handle($request, Closure $next)
     {
-        $uid=$request->input('uid');
+       $uid="<script type=text/javascript>document.write(uid)</script>";
+//        $uid=$request->input('uid');
         //是否有uid
         if (empty($uid)){
             $arr=[
@@ -39,3 +40,9 @@ class CheckLogin
         return $next($request);
     }
 }
+?>
+<script type="text/javascript" >
+    var storage=window.localStorage;
+    var uid=storage["uid"];
+</script>
+

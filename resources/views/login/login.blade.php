@@ -25,6 +25,7 @@
                     </div>
                     <a href=""><h6>Forgot Password ?</h6></a>
                     <input type="button" id="btn" class="btn button-default" value="LOGIN">
+                    <input type="button" id="wxbtn" class="btn button-default" value="微信登陆">
                 </form>
             </div>
         </div>
@@ -35,6 +36,9 @@
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script>
     $(function (){
+        $("#wxbtn").click(function(){
+            location.href="/wechat/login";
+        });
         $('#btn').click(function (){
             var user_name=$('#user_name').val();
             var user_pwd=$('#user_pwd').val();
