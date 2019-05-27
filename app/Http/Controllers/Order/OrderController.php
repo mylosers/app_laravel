@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Order;
 
 use App\Http\Controllers\Controller;
+use App\Model\CartModel;
 use App\Model\OrderModel;
+use Illuminate\Support\Facades\Request;
+
 /**
  * 订单控制器
  * Class OrderController
@@ -18,20 +21,26 @@ class OrderController extends Controller
         $uid= $_POST['uid'];
         $cart_id=$_POST['cart_id'];
         $order_amout=$_POST['order_amout'];
+        $goods_name=$_POST['goods_name'];
+        $buy_number=$_POST['buy_number'];
         $order_sn=$this->order_sn();
         $data=[
             'order_sn'=>$order_sn,
+            'cart_id'=>$cart_id,
             'user_id'=>$uid,
             'order_amount'=>$order_amout,
             'state'=>1,
             'add_time'=>time(),
+            'goods_name'=>$goods_name,
+            'buy_number'=>$buy_number
         ];
         $data=OrderModel::insertGetId($data);
         if($data){
-            $res=[
-                'error'=>0,
-                'msg'=>'生成订单成功',
-                'oid'=>$data
+            CartModel::where(['cart_id'=>$cart_id])->update(['status'=>2]);
+                $res=[
+                    'error'=>0,
+                    'msg'=>'生成订单成功',
+                    'oid'=>$data
             ];
         }else{
             $res=[
@@ -68,6 +77,13 @@ class OrderController extends Controller
      * 订单列表
      */
     public function orderList(){
-        return view('Order.order');
+        $uid=$_GET['uid'];
+        $order=OrderModel::where(['user_id'=>$uid])->get();
+        if($order){
+            $order=$order->toArray();
+        }else{
+            $order=[];
+        }
+        return view('Order.order',['order'=>$order]);
     }
 }

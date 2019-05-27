@@ -71,7 +71,7 @@ class CartController  extends Controller
     //展示购物车列表
     public function cartlist(Request $request){
         $uid=$request->input('uid');
-        $res=CartModel::where(["status"=>0,'user_id'=>$uid])->get();
+        $res=CartModel::where(["status"=>1,'user_id'=>$uid])->get();
         $arr=$res->toArray();
         $total=$this->multi_array_sum($arr,'goods_price','buy_number');
         return view("Cart.cartlist",['res'=>$res,'total'=>$total]);

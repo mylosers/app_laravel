@@ -27,6 +27,6 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::post('/user/center','User\UserController@center');//个人中心
     Route::any("cart","Cart\CartController@cart");//加入购物车
     Route::any("cartlist","Cart\CartController@cartlist");//购物车列表展示
-    Route::post('/order','Order\OrderController@order');//个人中心
-    Route::get('/orderList','Order\OrderController@orderList');//个人中心
+    Route::post('/order','Order\OrderController@order');//生成订单
+    Route::get('/orderList','Order\OrderController@orderList');//订单列表
 });

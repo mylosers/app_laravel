@@ -61,6 +61,8 @@
                 <button class="btn button-default">提交订单</button>
                 <input type="hidden" value="{{$v->cart_id}}">
                 <input type="hidden" value="{{$v->goods_price*$v->buy_number}}">
+                <input type="hidden" value="{{$v->buy_number}}">
+                <input type="hidden" value="{{$v->goods_name}}">
                 <div class="divider"></div>
             @endforeach
         </div>
@@ -93,12 +95,14 @@
         $('.btn').click(function(){
             var cart_id=$(this).next().val();
             var order_amout=$(this).next().next().val();
+            var buy_number=$(this).next().next().next().val();
+            var goods_name=$(this).next().next().next().next().val();
             var storage=window.localStorage;
             var uid=storage["uid"];
             $.ajax({
                 url:'/order',
                 type:"post",
-                data:{cart_id:cart_id,uid:uid,order_amout:order_amout},
+                data:{cart_id:cart_id,uid:uid,order_amout:order_amout,buy_number:buy_number,goods_name:goods_name},
                 dataType:'json',
                 success:function(msg){
                     alert(msg.msg);
