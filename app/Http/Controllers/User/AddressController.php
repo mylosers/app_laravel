@@ -15,6 +15,22 @@ class AddressController extends Controller
 
         return view('address.address',['res'=>$res]);
     }
+    //检测登录状态
+    public function addressAdd(Request $request){
+        $uid=$request->input('uid');
+        $res=DB::table('user')->where('user_id',$uid)->select('login_status')->first();
+        $status=$res->login_status;
+        if ($status==1){
+            return json_encode($uid);
+        }else{
+            $arr=array(
+                'status'=>50003,
+                'msg'=>'请登录'
+            );
+            return json_encode($arr);
+        };
+
+    }
     //获取towm
     public function town(Request $request){
         $id=$request->input('id');
@@ -28,7 +44,7 @@ class AddressController extends Controller
         return ['data'=>$info];
     }
     //收货地址入库
-    public function addressadd(Request $request){
+    public function address_add(Request $request){
         $data=$request->input('data');
 
         $info=[

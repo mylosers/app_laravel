@@ -25,7 +25,7 @@ Route::post('/user/quite','User\QuitController@quit');//退出
 //获取地址
 Route::post('/user/address/town','User\AddressController@town');//市
 Route::post('/user/address/county','User\AddressController@county');//县区
-Route::post('/user/address/addressadd','User\AddressController@addressadd');//入库
+Route::post('/user/address/address_add','User\AddressController@address_add');//入库
 
 
 Route::group(['middleware' => ['checklogin']], function () {
@@ -36,6 +36,6 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::post('/order','Order\OrderController@order');//个人中心
     Route::get('/orderList','Order\OrderController@orderList');//个人中心
     Route::get('/user/address','User\AddressController@address');//收货地址页面
-    Route::post('/user/addressAdd','User\AddressController@addressAdd');//入库
+    Route::post('/user/addressAdd','User\AddressController@addressAdd');//检查登录状态
 
 });

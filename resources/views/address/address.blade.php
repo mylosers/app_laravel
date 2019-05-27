@@ -54,6 +54,7 @@
     $(function () {
         //根据省找市
         $('.check_province').click(function (){
+
             var id=$(this).next().val();//获取id
             var name=$(this).val();//获取name
             $('#sheng').nextAll().val('');
@@ -126,8 +127,6 @@
                         _str +='<input type="button" value='+v.name+' class="check_county">'
                             +'<input value='+v.id+' type="hidden" >'
                     });
-                    $('#check_county').children().last().empty();//清除其他
-                    $('#check_county').children().last().append(_str);//追加市
                 }
             })
         })
@@ -160,7 +159,7 @@
 
             //入库
             $.ajax({
-                url:'/user/address/addressadd',
+                url:'/user/address/address_add',
                 data:{data:_data},
                 type:'post',
                 dataType:'json',
