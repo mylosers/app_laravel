@@ -51,7 +51,7 @@
                 </li>
                 <li><a class="aaa" href="setting.html"><i class="fa fa-cog"></i>Settings</a></li>
                 <li><a class="aaa" href="about-us.html"><i class="fa fa-user"></i>About Us</a></li>
-                <li><a class="aaa" href="contact.html"><i class="fa fa-envelope-o"></i>Contact Us</a></li>
+                <li id="address"><a class="aaa" ><i class="fa fa-envelope-o"></i>Address</a></li>
                 <li id="replace"><a href="/user/login"><i class="fa fa-sign-in"></i>Login</a></li>
                 <li><a href="/user/reg"><i class="fa fa-user-plus"></i>Register</a></li>
             </ul>
@@ -334,7 +334,9 @@
 <script src="/js/main.js"></script>
 
     <script>
+
         $(function(){
+            //判断是否登录
             var storage=window.localStorage;
             var uid=storage["uid"];
             $('#center').click(function (){
@@ -363,11 +365,9 @@
 
                 })
             });
-            //退出
-                $(document).on('click','#quite',function(){
-                var storage=window.localStorage;
-                var uid=storage["uid"];
 
+            //退出
+            $(document).on('click','#quite',function(){
                 $.ajax({
                     url:'/user/quite',
                     data:{uid:uid},
@@ -385,6 +385,7 @@
                 })
             })
 
+            //布局购物车
             $.ajax({
                 url:'/homeCart',
                 type:"post",
@@ -447,6 +448,25 @@
                     }
                 }
             });
+
+            //添加地址
+            $('#address').click(function (){
+                $.ajax({
+                    url:'/user/addressAdd',
+                    data:{uid:uid},
+                    type:"post",
+                    dataType:'json',
+                    success:function (res){
+                        if (res.status==50003){
+                            alert(res.msg);
+                            window.location.replace('/user/login');
+
+                        }
+                        window.location.replace('/user/address?uid='+res);
+                    }
+                })
+            })
+
         })
     </script>
 </body>

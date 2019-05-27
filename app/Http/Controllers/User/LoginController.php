@@ -44,8 +44,8 @@ class LoginController extends Controller
         }
         //验证用户
         $res=DB::table('user')->where('user_name',$user_name)->first();
-        $user_name2=$res->user_name;
-        if ($user_name2==$user_name) {
+        if ($res) {
+            $user_name2=$res->user_name;
             //验证密码
             $user_pwd2=$res->user_pwd;
             if ($user_pwd2==md5($user_pwd)){
