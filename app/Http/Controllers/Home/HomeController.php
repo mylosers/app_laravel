@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use App\Model\GoodsModel;
 use App\Model\CartModel;
-
+use App\Http\Controllers\Curl;
 /**
  * 首页
  * Class HomeController

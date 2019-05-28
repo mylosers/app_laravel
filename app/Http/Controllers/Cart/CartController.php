@@ -98,8 +98,4 @@ class CartController  extends Controller
             return 0;
         }
     }
-
-
-
-
 }

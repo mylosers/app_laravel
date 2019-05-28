@@ -80,7 +80,6 @@ class LoginController extends Controller
      * 微信登陆
      */
     public function wxlogin(){
-        echo "<script type=text/javascript>document.write(data)</script>";die;
         $result=urlencode("http://vm.app.cn/wechat/code");
         $scode="snsapi_userinfo";
         $url="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcaeeec85ae352cb3&redirect_uri=$result&response_type=code&scope=$scode&state=STATE#wechat_redirect";
@@ -126,8 +125,4 @@ class LoginController extends Controller
         }
     }
 }
-?>
-<script type="text/javascript" >
-    var data="call_me_why";
-</script>
 
